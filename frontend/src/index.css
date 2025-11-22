@@ -1,0 +1,318 @@
+/* frontend/src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  /* Variáveis Comuns */
+  --neon-purple: #a855f7;
+  --neon-cyan: #06b6d4;
+  --bs-primary: var(--neon-purple);
+  --bs-primary-rgb: 168, 85, 247;
+}
+
+/* TEMA ESCURO (Padrão) */
+body, body.dark-mode {
+  --bg-deep: #020617;
+  --bg-panel: rgba(30, 41, 59, 0.6);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --card-border: rgba(255, 255, 255, 0.08);
+}
+
+/* TEMA CLARO (Novo) */
+body.light-mode {
+  --bg-deep: #f1f5f9;       /* Cinza muito claro */
+  --bg-panel: rgba(255, 255, 255, 0.8); /* Branco vidro */
+  --text-main: #1e293b;     /* Azul escuro */
+  --text-muted: #64748b;    /* Cinza médio */
+  --card-border: rgba(0, 0, 0, 0.05);
+  
+  /* Ajuste da Aurora para o dia */
+  background: linear-gradient(135deg, #e0f2fe 0%, #f3e8ff 100%);
+}
+
+/* Aplicação das variáveis */
+body {
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  transition: background-color 0.5s ease, color 0.3s ease; /* Transição suave */
+}
+
+.card {
+  background: var(--bg-panel);
+  border: 1px solid var(--card-border);
+  color: var(--text-main);
+}
+
+/* Correção para inputs no modo claro */
+body.light-mode .form-control, 
+body.light-mode .form-select {
+  background-color: #fff;
+  color: #1e293b !important;
+  border: 1px solid #cbd5e1;
+}
+
+/* Correção de tabelas no modo claro */
+body.light-mode .table {
+  color: var(--text-main);
+}
+body.light-mode .table-hover tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* --- 1. Aurora Background --- */
+body {
+  background-color: var(--bg-deep);
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Efeito Aurora (Bolhas de luz no fundo) */
+body::before, body::after {
+  content: '';
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: -1;
+  opacity: 0.4;
+  animation: floatAurora 10s infinite alternate;
+}
+
+body::before {
+  background: radial-gradient(circle, var(--neon-purple), transparent 70%);
+  top: -100px;
+  left: -100px;
+}
+
+body::after {
+  background: radial-gradient(circle, var(--neon-cyan), transparent 70%);
+  bottom: -100px;
+  right: -100px;
+  animation-delay: -5s;
+}
+
+@keyframes floatAurora {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(50px, 50px) scale(1.1); }
+}
+
+/* --- 2. Glassmorphism Cards (Vidro Fosco) --- */
+.card {
+  background: var(--bg-panel);
+  backdrop-filter: blur(16px); /* O segredo do vidro */
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), 
+              box-shadow 0.3s ease, 
+              border-color 0.3s ease;
+}
+
+/* Microinteração: Hover no Card */
+.card:hover {
+  transform: translateY(-5px) scale(1.01);
+  border-color: rgba(168, 85, 247, 0.3);
+  box-shadow: 0 12px 40px -10px rgba(168, 85, 247, 0.15); /* Brilho roxo sutil */
+}
+
+.card-header {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--neon-cyan) !important;
+  font-family: 'JetBrains Mono', monospace; /* Fonte Tech para títulos */
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-size: 0.9rem;
+}
+
+/* --- 3. Neon Buttons & Inputs --- */
+.btn-primary {
+  background: transparent;
+  border: 1px solid var(--neon-purple);
+  color: var(--neon-purple);
+  box-shadow: 0 0 10px rgba(168, 85, 247, 0.1);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  background: var(--neon-purple);
+  color: #fff;
+  box-shadow: 0 0 25px rgba(168, 85, 247, 0.6); /* Glow forte */
+  transform: translateY(-2px);
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  border: none;
+  color: white;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+}
+.btn-success:hover {
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.6);
+  transform: scale(1.05);
+}
+
+/* Inputs estilo Terminal */
+.form-control, .form-select {
+  background-color: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-main);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: rgba(15, 23, 42, 0.9);
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 15px rgba(6, 182, 212, 0.3); /* Glow Azul */
+  color: white;
+}
+
+/* --- 4. Navbar Flutuante --- */
+.navbar {
+  background: rgba(15, 23, 42, 0.7) !important;
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 2rem;
+}
+
+.navbar-brand {
+  font-family: 'JetBrains Mono', monospace;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+.nav-link {
+  color: var(--text-muted) !important;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: #fff !important;
+  text-shadow: 0 0 8px rgba(255,255,255,0.5);
+}
+
+/* Indicador ativo na navbar */
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  background: var(--neon-cyan);
+  box-shadow: 0 0 10px var(--neon-cyan);
+}
+
+/* --- 5. Tabelas Tech --- */
+.table {
+  color: var(--text-main);
+  --bs-table-bg: transparent;
+  --bs-table-border-color: rgba(255,255,255,0.1);
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+  color: var(--text-main);
+}
+
+/* Badges Brilhantes */
+.badge {
+  box-shadow: 0 0 10px currentColor; /* O badge brilha na própria cor */
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Títulos */
+h1, h2 {
+  font-weight: 800;
+  letter-spacing: -1px;
+  background: linear-gradient(to right, #fff, #94a3b8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 1.5rem;
+}
+
+/* --- 6. Correções de Contraste (Legibilidade) --- */
+
+/* Torna o 'text-muted' (textos secundários) cinza claro em vez de cinza escuro */
+.text-muted {
+  color: #94a3b8 !important; /* Cinza azulado claro */
+}
+
+/* Garante que textos dentro dos cards sejam brancos por padrão */
+.card-body {
+  color: #f1f5f9;
+}
+
+/* Títulos pequenos dentro dos cards (ex: TOTAL DE TAREFAS) */
+.card-body h5, .card-body h6.card-subtitle {
+  color: #cbd5e1 !important; /* Quase branco */
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Garante que inputs tenham texto branco */
+.form-control, .form-select {
+  color: #fff !important;
+}
+
+/* Garante que o texto dentro dos badges seja legível (preto ou branco dependendo do fundo) */
+.badge.bg-warning, .badge.bg-info {
+  color: #0f172a !important; /* Texto escuro para fundos amarelos/azuis claros */
+}
+
+/* Listas dentro dos cards (Tarefas urgentes, etc) */
+.list-group-item {
+  background-color: transparent; /* Fundo transparente para pegar a cor do card */
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  color: #e2e8f0;
+}
+
+.list-group-item .text-muted {
+  color: #64748b !important; /* Um pouco mais escuro para diferenciar do título */
+}
+
+/* Animação de Sucesso na Tabela */
+tr.table-success {
+  animation: glowSuccess 1s ease-out;
+}
+
+@keyframes glowSuccess {
+  0% { box-shadow: 0 0 5px #10b981 inset; background-color: rgba(16, 185, 129, 0.2); }
+  100% { box-shadow: none; background-color: transparent; }
+}
+
+/* Animações de Clima */
+@keyframes floatWeather {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes spinSun {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.weather-icon-animate {
+  display: inline-block;
+  animation: floatWeather 3s ease-in-out infinite;
+}
+
+.weather-icon-sun {
+  animation: spinSun 10s linear infinite;
+}

@@ -1,0 +1,12 @@
+# Dependências (NUNCA ENVIE ISSO)
+node_modules/
+*/node_modules/
+
+# Build de produção
+dist/
+build/
+
+# Logs e arquivos de sistema
+*.log
+.DS_Store
+Thumbs.db
