@@ -1,33 +1,37 @@
-/* frontend/src/index.css */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
 
 :root {
-  /* Variáveis Comuns */
-  --neon-purple: #a855f7;
-  --neon-cyan: #06b6d4;
-  --bs-primary: var(--neon-purple);
-  --bs-primary-rgb: 168, 85, 247;
+  /* Variáveis de Cores (Agenda de Estudos) */
+  --neon-purple: #4F46E5;      /* Índigo - foco */
+  --neon-cyan: #06B6D4;        /* Ciano - energia/ações */
+  --bs-primary: #4F46E5;
+  --bs-primary-rgb: 79, 70, 229;
+
+  /* Novas cores para o sistema */
+  --study-success: #10B981;    /* Verde - concluído */
+  --study-warning: #F59E0B;    /* Âmbar - urgente */
+  --study-break: #8B5CF6;      /* Violeta - pausa/descanso */
 }
 
 /* TEMA ESCURO (Padrão) */
 body, body.dark-mode {
-  --bg-deep: #020617;
-  --bg-panel: rgba(30, 41, 59, 0.6);
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --card-border: rgba(255, 255, 255, 0.08);
+  --bg-deep: #0f172a;          
+  --bg-panel: rgba(30, 41, 59, 0.85); /* Mais opaco para melhor leitura */
+  --text-main: #f1f5f9;     
+  --text-muted: #94a3b8;    
+  --card-border: rgba(148, 163, 184, 0.15);
 }
 
 /* TEMA CLARO (Novo) */
 body.light-mode {
-  --bg-deep: #f1f5f9;       /* Cinza muito claro */
-  --bg-panel: rgba(255, 255, 255, 0.8); /* Branco vidro */
-  --text-main: #1e293b;     /* Azul escuro */
-  --text-muted: #64748b;    /* Cinza médio */
-  --card-border: rgba(0, 0, 0, 0.05);
+  --bg-deep: #3f70a2;
+  --bg-panel: #1a3857;
+  --text-main: #1E293B;
+  --text-muted: #64748B;
+  --card-border: rgba(0, 0, 0, 0.08);
   
-  /* Ajuste da Aurora para o dia */
-  background: linear-gradient(135deg, #e0f2fe 0%, #f3e8ff 100%);
+  /* Gradiente suave para fundo claro */
+  background: linear-gradient(135deg, #E0F2FE 0%, #F3E8FF 100%);
 }
 
 /* Aplicação das variáveis */
@@ -70,15 +74,9 @@ body {
 
 /* Efeito Aurora (Bolhas de luz no fundo) */
 body::before, body::after {
-  content: '';
-  position: fixed;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  filter: blur(100px);
-  z-index: -1;
-  opacity: 0.4;
-  animation: floatAurora 10s infinite alternate;
+  opacity: 0.15; /* Deixa o fundo colorido bem mais sutil */
+  filter: blur(120px);
+  display: none;
 }
 
 body::before {
@@ -315,4 +313,92 @@ tr.table-success {
 
 .weather-icon-sun {
   animation: spinSun 10s linear infinite;
+}
+
+/* === FORMULÁRIOS DE AUTENTICAÇÃO (Login/Cadastro) === */
+
+/* Estilos específicos para cards de autenticação */
+.auth-card {
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
+  color: #1E293B !important;
+  border-radius: 20px !important;
+}
+
+/* Header do card de auth */
+.auth-card .card-header {
+  background: linear-gradient(135deg, #065fd4) !important;
+  color: white !important;
+  border-bottom: none !important;
+  font-family: 'JetBrains Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-radius: 20px 20px 0 0 !important;
+}
+
+/* Títulos e textos dentro do auth-card */
+.auth-card .card-title,
+.auth-card .col-form-label,
+.auth-card .text-center,
+.auth-card p,
+.auth-card label {
+  color: #1E293B !important;
+}
+
+/* Inputs no auth-card */
+.auth-card .form-control {
+  background-color: white !important;
+  color: #1E293B !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 10px !important;
+}
+
+.auth-card .form-control:focus {
+  background-color: white !important;
+  color: #1E293B !important;
+  border-color: #065fd4 !important;
+  box-shadow: 0 0 0 0.25rem rgba(6, 95, 212, 0.25) !important;
+}
+
+/* Botão primário no auth-card */
+.auth-card .btn-primary {
+  background: #065fd4 !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 12px !important;
+  font-weight: 600;
+}
+
+.auth-card .btn-primary:hover {
+  background: #065fd4!important;
+  box-shadow: 0 0 20px rgba(6, 95, 212, 0.4) !important;
+  transform: translateY(-2px);
+}
+
+/* Links no auth-card */
+.auth-card a {
+  color: #4F46E5 !important;
+  font-weight: 600;
+}
+
+.auth-card a:hover {
+  color: #4338CA !important;
+  text-decoration: underline;
+}
+
+/* Alertas no auth-card */
+.auth-card .alert {
+  color: #1E293B !important;
+}
+
+/* Linha divisória */
+.auth-card hr {
+  border-color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Remove efeitos de glassmorphism para inputs no auth-card */
+.auth-card input::placeholder {
+  color: #94a3b8 !important;
 }
