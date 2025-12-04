@@ -1,4 +1,3 @@
-// src/pages/RegisterPage.jsx
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../api/axios';
@@ -33,10 +32,10 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="row justify-content-center mt-5">
+    <div className="row justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
       <div className="col-md-6 col-lg-5">
-        <div className="card shadow-lg border-0">
-          <div className="card-header bg-dark text-white text-center py-3">
+        <div className="card shadow-lg border-0 auth-card">
+          <div className="card-header text-center py-3">
             <h3 className="mb-0">Crie sua Conta</h3>
           </div>
           <div className="card-body p-4">
@@ -46,7 +45,7 @@ const RegisterPage = () => {
 
             <form onSubmit={handleSubmit}>
               <div className="mb-3">
-                <label className="form-label">Usuário</label>
+                <label className="form-label fw-bold">Usuário</label>
                 <input 
                   type="text" 
                   name="username" 
@@ -56,7 +55,7 @@ const RegisterPage = () => {
                 />
               </div>
               <div className="mb-3">
-                <label className="form-label">Senha</label>
+                <label className="form-label fw-bold">Senha</label>
                 <input 
                   type="password" 
                   name="password" 
@@ -66,7 +65,7 @@ const RegisterPage = () => {
                 />
               </div>
               <div className="mb-4">
-                <label className="form-label">Confirmar Senha</label>
+                <label className="form-label fw-bold">Confirmar Senha</label>
                 <input 
                   type="password" 
                   name="confirmPassword" 
@@ -75,10 +74,11 @@ const RegisterPage = () => {
                   required 
                 />
               </div>
-              <button type="submit" className="btn btn-success w-100 btn-lg">Cadastrar</button>
+              <button type="submit" className="btn btn-primary w-100 btn-lg">Cadastrar</button>
             </form>
             
-            <p className="text-center mt-3 mb-0">
+            <hr className="my-4" />
+            <p className="text-center mb-0">
               Já tem conta? <Link to="/login" className="text-decoration-none">Faça login</Link>
             </p>
           </div>

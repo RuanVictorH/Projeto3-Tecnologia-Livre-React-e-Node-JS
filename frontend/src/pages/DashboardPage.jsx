@@ -1,4 +1,3 @@
-// frontend/src/pages/DashboardPage.jsx
 import { useEffect, useState } from 'react';
 import api from '../api/axios';
 import Navbar from '../components/Navbar';

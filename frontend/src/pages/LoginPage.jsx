@@ -1,4 +1,3 @@
-// src/pages/LoginPage.jsx
 import { useState, useContext } from 'react';
 import AuthContext from '../context/AuthContext';
 import { Link } from 'react-router-dom';
@@ -23,12 +22,13 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="row justify-content-center mt-5">
+    <div className="row justify-content-center align-items-center" style={{ minHeight: '80vh' }}>
       <div className="col-md-6 col-lg-5">
-        <div className="card shadow-lg border-0">
-          <div className="card-header bg-dark text-white text-center py-3">
+        <div className="card shadow-lg border-0 auth-card">
+          <div className="card-header text-center py-3">
             <h3 className="mb-0">Acesso Restrito</h3>
           </div>
+
           <div className="card-body p-4">
             <h5 className="card-title text-center mb-4">Agenda de Estudos JS</h5>
 
@@ -36,26 +36,31 @@ const LoginPage = () => {
 
             <form onSubmit={handleSubmit}>
               <div className="mb-3 row align-items-center">
-                <label className="col-sm-3 col-form-label text-end fw-bold">Usuário</label>
+                <label className="col-sm-3 col-form-label text-end fw-bold">
+                  Usuário
+                </label>
                 <div className="col-sm-9">
-                  <input 
-                    type="text" 
-                    name="username" 
-                    className="form-control" 
+                  <input
+                    type="text"
+                    name="username"
+                    className="form-control"
                     onChange={handleChange}
-                    required 
+                    required
                   />
                 </div>
               </div>
+
               <div className="mb-3 row align-items-center">
-                <label className="col-sm-3 col-form-label text-end fw-bold">Senha</label>
+                <label className="col-sm-3 col-form-label text-end fw-bold">
+                  Senha
+                </label>
                 <div className="col-sm-9">
-                  <input 
-                    type="password" 
-                    name="password" 
-                    className="form-control" 
+                  <input
+                    type="password"
+                    name="password"
+                    className="form-control"
                     onChange={handleChange}
-                    required 
+                    required
                   />
                 </div>
               </div>
